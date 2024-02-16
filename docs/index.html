@@ -34,7 +34,11 @@
     video.src = videoSrc;
     console.log('native HLS support');
   } else if (Hls.isSupported()) {
-    var hls = new Hls();
+    var hls = new Hls({
+      capLevelToPlayerSize: true,
+      capLevelOnFPSDrop: true,
+      debug: true,
+    });
     hls.loadSource(videoSrc);
     hls.attachMedia(video);
   }
