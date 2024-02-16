@@ -13,18 +13,35 @@
     }
 
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: grid;
+      place-items: center;
+
       margin: 2rem;
     }
     video {
+      width: 100%;
+    }
+    image {
       width: 100%;
     }
   </style>
 </head>
 <body>
   <video id="player" controls autoplay muted loop preload="auto"></video>
+  <figure>
+    <picture>
+      <source srcset="image-lg.avif" type="image/avif" media="(min-width: 720px)" >
+      <source srcset="image-lg.webp" type="image/webp" media="(min-width: 720px)" >
+      <source srcset="image-lg.jpeg" type="image/jpeg" media="(min-width: 720px)" >
+      <source srcset="image-md.avif" type="image/avif" media="(max-width: 720px)" >
+      <source srcset="image-md.webp" type="image/webp" media="(max-width: 720px)" >
+      <source srcset="image-md.jpeg" type="image/jpeg" media="(max-width: 720px)" >
+      <source srcset="image-sm.avif" type="image/avif" media="(max-width: 360px)" >
+      <source srcset="image-sm.webp" type="image/webp" media="(max-width: 360px)" >
+      <img src="image-sm.jpeg" alt="Image example" >
+    </picture>
+    <figcaption>Image example</figcaption>
+  </figure>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 <script>
