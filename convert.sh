@@ -15,31 +15,40 @@ fi
 file="$1"
 folder="$2"
 
-ffmpeg -i $file \
-  -map 0:v:0 \
-  -filter:v:0 scale=480:-1  -maxrate:v:0 775k \
-  -map 0:v:0 \
-  -filter:v:1 scale=640:-1  -maxrate:v:1 1.2M \
-  -map 0:v:0 \
-  -filter:v:2 scale=768:-1  -maxrate:v:2 1.5M \
-  -map 0:v:0 \
-  -filter:v:3 scale=960:-1  -maxrate:v:3 2.5M \
-  -map 0:v:0 \
-  -filter:v:4 scale=1280:-1 -maxrate:v:4 3.5M \
-  -map 0:v:0 \
-  -filter:v:5 scale=1920:-1 -maxrate:v:5 5M \
-  -map 0:v:0 \
-  -filter:v:6 scale=1920:-1 -maxrate:v:6 6.5M \
-  -map 0:v:0 \
-  -filter:v:7 scale=1920:-1 -maxrate:v:7 8M \
-  -var_stream_map "v:0,name:v1
-                   v:1,name:v2
-                   v:2,name:v3
-                   v:3,name:v4
-                   v:4,name:v5
-                   v:5,name:v6
-                   v:6,name:v7
-                   v:7,name:v8" \
+ffmpeg -hide_banner -i $file \
+  -filter_complex \
+  "
+    [0:v]split=8[v1][v2][v3][v4][v5][v6][v7][v8]; \
+    [v1]scale=480:-1[v1scaled]; \
+    [v2]scale=640:-1[v2scaled]; \
+    [v3]scale=768:-1[v3scaled]; \
+    [v4]scale=960:-1[v4scaled]; \
+    [v5]scale=1280:-1[v5scaled]; \
+    [v6]scale=1920:-1[v6scaled]; \
+    [v7]scale=1920:-1[v7scaled]; \
+    [v8]scale=1920:-1[v8scaled]; \
+    [0:a]aformat=channel_layouts=stereo[a1] \
+    " \
+  -map "[v1scaled]" -maxrate 775k \
+  -map "[v2scaled]" -maxrate 1.2M \
+  -map "[v3scaled]" -maxrate 1.5M \
+  -map "[v4scaled]" -maxrate 2.5M \
+  -map "[v5scaled]" -maxrate 3.5M \
+  -map "[v6scaled]" -maxrate 5M   \
+  -map "[v7scaled]" -maxrate 6.5M \
+  -map "[v8scaled]" -maxrate 8M   \
+  -map "[a1]" \
+  -var_stream_map \
+  " \
+    a:0,agroup:audio,default:yes,name:a1 \
+    v:0,agroup:audio,name:v1 \
+    v:1,agroup:audio,name:v2 \
+    v:2,agroup:audio,name:v3 \
+    v:3,agroup:audio,name:v4 \
+    v:4,agroup:audio,name:v5 \
+    v:5,agroup:audio,name:v6 \
+    v:6,agroup:audio,name:v7 \
+    v:7,agroup:audio,name:v8" \
   -threads 0 \
   -f hls \
   -hls_playlist_type vod \
