@@ -14,6 +14,7 @@ fi
 
 file="$1"
 folder="$2"
+width=$(./width.sh $file)
 
 ffmpeg -hide_banner -i $file \
   -filter_complex \
@@ -29,14 +30,14 @@ ffmpeg -hide_banner -i $file \
     [v8]scale=1920:-1[v8scaled]; \
     [0:a]aformat=channel_layouts=stereo[a1] \
     " \
-  -map "[v1scaled]" -maxrate 775k \
-  -map "[v2scaled]" -maxrate 1.2M \
-  -map "[v3scaled]" -maxrate 1.5M \
-  -map "[v4scaled]" -maxrate 2.5M \
-  -map "[v5scaled]" -maxrate 3.5M \
-  -map "[v6scaled]" -maxrate 5M   \
-  -map "[v7scaled]" -maxrate 6.5M \
-  -map "[v8scaled]" -maxrate 8M   \
+  -map "[v1scaled]" -preset veryslow -movflags +faststart -an -maxrate 775k \
+  -map "[v2scaled]" -preset veryslow -movflags +faststart -an -maxrate 1.2M \
+  -map "[v3scaled]" -preset veryslow -movflags +faststart -an -maxrate 1.5M \
+  -map "[v4scaled]" -preset veryslow -movflags +faststart -an -maxrate 2.5M \
+  -map "[v5scaled]" -preset veryslow -movflags +faststart -an -maxrate 3.5M \
+  -map "[v6scaled]" -preset veryslow -movflags +faststart -an -maxrate 5M   \
+  -map "[v7scaled]" -preset veryslow -movflags +faststart -an -maxrate 6.5M \
+  -map "[v8scaled]" -preset veryslow -movflags +faststart -an -maxrate 8M   \
   -map "[a1]" \
   -var_stream_map \
   " \
