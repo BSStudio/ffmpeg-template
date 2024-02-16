@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BSS VOD example</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem;
+    }
+    video {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <video id="player" controls autoplay></video>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+<script>
+  var video = document.getElementById('player');
+  var videoSrc = './prog_index.m3u8';
+  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = videoSrc;
+    console.log('native HLS support');
+  } else if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource(videoSrc);
+    hls.attachMedia(video);
+  }
+</script>
+</html>
