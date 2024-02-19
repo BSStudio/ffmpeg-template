@@ -1,6 +1,8 @@
 # ffmpeg-template
 
-This repo stores a template for generating VOD (Video On Demand) files for the bsstudio.hu project.
+This repo stores a template for
+ * generating VOD (Video On Demand) files for the bsstudio.hu project
+ * generating optimised images for the bsstudio.hu web project
 
 # Usage
 
@@ -31,10 +33,12 @@ I used the following ffmpeg command to keep only the first 30 seconds of the mov
 ```bash
 curl -O http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_30fps_normal.mp4
 ffmpeg -i bbb_sunflower_1080p_30fps_normal.mp4 -t 30 -c copy ./media/original.mp4
+rm bbb_sunflower_1080p_30fps_normal.mp4
 ```
 
 ## Photo
-An image I took with my phone.
+An image I took with my phone in Connemara, Ireland.
+iPhone 15 Pro
 
 # Generated formats
 The attempts to follow Apple's recommendations for HTTP Live Streaming (HLS) format.
