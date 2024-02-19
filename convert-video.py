@@ -80,31 +80,42 @@ if __name__ == "__main__":
         -filter_complex \\
         " \\
             [0:a]aformat=channel_layouts=stereo[a1]; \\
-            [0:v]split={len(filtered_streams)}{''.join([f"[v{i+1}]" for i in range(len(filtered_streams))])}"""
+            [0:v]split={len(filtered_streams)}"""
+    
+    # create a name for each stream that was created by the split filter
+    ffmpeg_command += ''.join([f"[v{i+1}]" for i in range(len(filtered_streams))])
 
+    # apply different aspect ratio for each stream
     for index, (width, bitrate) in enumerate(filtered_streams):
         ffmpeg_command += f"""; \\
             [v{index + 1}]scale={width}:-2[v{index + 1}scaled]"""
 
+    # pass audio stream
     ffmpeg_command += f""" \\
         " \\
         -map "[a1]" \\"""
 
+    # use high compression, remove audio, set max bitrate for each stream
+    # also enable faststart for better web support
     for index, (width, bitrate) in enumerate(filtered_streams):
         ffmpeg_command += f"""
         -map "[v{index + 1}scaled]" -preset veryslow -movflags +faststart -an -maxrate {bitrate} \\"""
 
+    # define audio stream for HLS
     ffmpeg_command += f"""
         -var_stream_map \\
         " \\
             a:0,agroup:audio,default:yes,name:a1"""
 
+    # define video streams for HLS
     for index, (width, bitrate) in enumerate(filtered_streams):
         ffmpeg_command += f""" \\
             v:{index},agroup:audio,name:v{index + 1}"""
 
+    # close bracket
     ffmpeg_command += ' \\\n        " \\'
 
+    # apply HLS settings and naming conventions
     ffmpeg_command += f"""
         -threads 0 \\
         -f hls \\
