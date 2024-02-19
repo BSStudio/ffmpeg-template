@@ -2,7 +2,27 @@
 
 This repo stores a template for generating VOD (Video On Demand) files for the bsstudio.hu project.
 
+# Usage
+
+## Convert image
+```bash
+./convert_image.py ./docs/original.jpg ./docs
+```
+1. The first argument is the path to the original image.
+2. The second (optional) argument is the path to the output directory.
+   It's the current directory by default.
+
+## Convert video
+```bash
+./convert_video.py ./media/original.mp4 ./docs
+```
+1. The first argument is the path to the original video.
+2. The second (optional) argument is the path to the output directory.
+   It's the current directory by default.
+
 # Sample media file
+
+## Video
 The sample media file is a copy of the Big Buck Bunny movie,
 which is licensed under the Creative Commons Attribution 3.0 license.
 The original file can be found at https://peach.blender.org/download/
@@ -12,6 +32,9 @@ I used the following ffmpeg command to keep only the first 30 seconds of the mov
 curl -O http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_30fps_normal.mp4
 ffmpeg -i bbb_sunflower_1080p_30fps_normal.mp4 -t 30 -c copy ./media/original.mp4
 ```
+
+## Photo
+An image I took with my phone.
 
 # Generated formats
 The attempts to follow Apple's recommendations for HTTP Live Streaming (HLS) format.
