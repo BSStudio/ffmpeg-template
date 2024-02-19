@@ -60,7 +60,12 @@ if __name__ == "__main__":
 
     # Verify if there's an optional argument for the output folder
     # Otherwise, use the current working directory
-    output_folder = sys.argv[2] if len(sys.argv) > 2 else os.getcwd()
+    output_folder = os.getcwd()
+    if len(sys.argv) > 2:
+        output_folder = sys.argv[2]
+        if not os.path.isdir(output_folder):
+            print(f"Error: Output folder not found: {output_folder}")
+            sys.exit(1)
 
     # Verify if the output folder exists
     if not os.path.isdir(output_folder):
@@ -79,7 +84,8 @@ if __name__ == "__main__":
     print(f"Image height: {image_height}")
 
     for size, dimensions in sizes.items():
-        # Don't generate images for sizes that are larger than the original image
+        # Don't generate images for sizes
+        # that are larger than the original image
         if dimensions[0] <= image_height:
             for image_format in ["avif", "webp", "jpeg"]:
                 generate_image(image_file, size, dimensions[1], image_format, output_folder)
