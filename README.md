@@ -1,4 +1,4 @@
-# ffmpeg-template
+# web-media-converter-scripts
 
 This repo stores a template for
  * generating VOD (Video On Demand) files for the bsstudio.hu project
