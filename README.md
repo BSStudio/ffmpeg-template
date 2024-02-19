@@ -37,8 +37,9 @@ rm bbb_sunflower_1080p_30fps_normal.mp4
 ```
 
 ## Photo
-An image I took with my phone in Connemara, Ireland.
-iPhone 15 Pro
+An image I took with my phone in Connemara, Ireland.  
+![Original photo](./docs/original.jpg)
+`iPhone 15 Pro f/1.8 1/7092 6.86mm ISO80`
 
 # Generated formats
 The attempts to follow Apple's recommendations for HTTP Live Streaming (HLS) format.
@@ -57,6 +58,7 @@ https://developer.apple.com/streaming/examples/
    * original audio (this will change)
 
 # Generated files
+## Video
 A HSL (HTTP Live Streaming) web player should be pointed at the ./prog_index.m3u8 file.  
 After that the web player can figure out what format the client can play and start streaming the video.
 ```
@@ -116,4 +118,18 @@ After that the web player can figure out what format the client can play and sta
 │  ├─ 🎞️ fileSequence0.ts
 │  ├─ 🎞️ fileSequence1.ts
 │  ├─ [...]
+```
+
+## Photo
+```
+📁 ./
+├─ 🖼️️ image-lg.avif
+├─ 🖼️️ image-lg.webp
+├─ 🖼️️ image-lg.jpeg
+├─ 🖼️️ image-md.avif
+├─ 🖼️️ image-md.webp
+├─ 🖼️️ image-md.jpeg
+├─ 🖼️️ image-sm.avif
+├─ 🖼️️ image-sm.webp
+├─ 🖼️️ image-sm.jpeg
 ```
