@@ -82,7 +82,6 @@ if __name__ == "__main__":
 
     # Use subprocess to determine the height of the image using `identify`
     image_height = get_image_height(image_file)
-    print(f"Image height: {image_height}")
 
     for size, dimensions in sizes.items():
         # Don't generate images for sizes
