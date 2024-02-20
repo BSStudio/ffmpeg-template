@@ -8,7 +8,7 @@ This repo stores a template for
 
 ## Convert image
 ```bash
-./convert_image.py ./docs/original.jpg ./docs
+./convert_image.py ./sample/original.jpeg ./docs
 ```
 1. The first argument is the path to the original image.
 2. The second (optional) argument is the path to the output directory.
@@ -16,7 +16,7 @@ This repo stores a template for
 
 ## Convert video
 ```bash
-./convert_video.py ./media/original.mp4 ./docs
+./convert_video.py ./sample/original.mp4 ./docs
 ```
 1. The first argument is the path to the original video.
 2. The second (optional) argument is the path to the output directory.
@@ -38,7 +38,7 @@ rm bbb_sunflower_1080p_30fps_normal.mp4
 
 ## Photo
 An image I took with my phone in Connemara, Ireland.  
-![Original photo](./docs/original.jpg)
+![Original photo](./sample/original.jpeg)
 `iPhone 15 Pro f/1.8 1/7092 6.86mm ISO80`
 
 # Generated formats
