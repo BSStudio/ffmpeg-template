@@ -74,6 +74,7 @@ if __name__ == "__main__":
 
     # Generate different sizes of the image
     sizes = {
+        "xlg": (2160, "2160x2160"),
         "lg": (1080, "1080x1080"),
         "md": (720, "720x720"),
         "sm": (360, "360x360")

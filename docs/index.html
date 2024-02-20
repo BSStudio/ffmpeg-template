@@ -27,18 +27,21 @@
   </style>
 </head>
 <body>
-  <video id="player" controls autoplay muted loop preload="auto"></video>
+  <video id="player" controls autoplay muted loop preload="auto" src="video/prog_index.m3u8"></video>
   <figure>
     <picture>
-      <source srcset="image-lg.avif" type="image/avif" media="(min-width: 720px)" >
-      <source srcset="image-lg.webp" type="image/webp" media="(min-width: 720px)" >
-      <source srcset="image-lg.jpeg" type="image/jpeg" media="(min-width: 720px)" >
-      <source srcset="image-md.avif" type="image/avif" media="(max-width: 720px)" >
-      <source srcset="image-md.webp" type="image/webp" media="(max-width: 720px)" >
-      <source srcset="image-md.jpeg" type="image/jpeg" media="(max-width: 720px)" >
-      <source srcset="image-sm.avif" type="image/avif" media="(max-width: 360px)" >
-      <source srcset="image-sm.webp" type="image/webp" media="(max-width: 360px)" >
-      <img src="image-sm.jpeg" alt="Image example" >
+      <source srcset="image/image-xlg.avif" type="image/avif" media="(min-height: 1080px)" >
+      <source srcset="image/image-xlg.webp" type="image/webp" media="(min-height: 1080px)" >
+      <source srcset="image/image-xlg.jpeg" type="image/jpeg" media="(min-height: 1080px)" >
+      <source srcset="image/image-lg.avif" type="image/avif" media="(max-height: 1080px)" >
+      <source srcset="image/image-lg.webp" type="image/webp" media="(max-height: 1080px)" >
+      <source srcset="image/image-lg.jpeg" type="image/jpeg" media="(max-height: 1080px)" >
+      <source srcset="image/image-md.avif" type="image/avif" media="(max-height: 720px)" >
+      <source srcset="image/image-md.webp" type="image/webp" media="(max-height: 720px)" >
+      <source srcset="image/image-md.jpeg" type="image/jpeg" media="(max-height: 720px)" >
+      <source srcset="image/image-sm.avif" type="image/avif" media="(max-height: 360px)" >
+      <source srcset="image/image-sm.webp" type="image/webp" media="(max-height: 360px)" >
+      <img src="image/image-sm.jpeg" alt="Image example" >
     </picture>
     <figcaption>Image example</figcaption>
   </figure>
@@ -46,9 +49,8 @@
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 <script>
   const video = document.getElementById('player');
-  const videoSrc = './prog_index.m3u8';
+  const videoSrc = video.src
   if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = videoSrc;
     console.log('native HLS support');
   } else if (Hls.isSupported()) {
     const hls = new Hls({

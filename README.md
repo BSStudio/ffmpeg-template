@@ -8,7 +8,7 @@ This repo stores a template for
 
 ## Convert image
 ```bash
-./convert_image.py ./sample/original.jpeg ./docs
+./convert-image.py ./sample/original.jpeg ./docs/image
 ```
 1. The first argument is the path to the original image.
 2. The second (optional) argument is the path to the output directory.
@@ -16,7 +16,7 @@ This repo stores a template for
 
 ## Convert video
 ```bash
-./convert_video.py ./sample/original.mp4 ./docs
+./convert-video.py ./sample/original.mp4 ./docs/video
 ```
 1. The first argument is the path to the original video.
 2. The second (optional) argument is the path to the output directory.
