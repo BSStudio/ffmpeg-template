@@ -7,13 +7,13 @@ This repo stores a template for
 # Usage
 
 ## Convert image
-![./convert-image.py ./sample/original.jpeg ./docs/image][./docs/demo/image.gif]
+![./convert-image.py ./sample/original.jpeg ./docs/image](./docs/demo/image.gif)
 1. The first argument is the path to the original image.
 2. The second (optional) argument is the path to the output directory.
    It's the current directory by default.
 
 ## Convert video
-![./convert-video.py ./sample/original.mp4 ./docs/video][./docs/demo/video.gif]
+![./convert-video.py ./sample/original.mp4 ./docs/video](./docs/demo/video.gif)
 1. The first argument is the path to the original video.
 2. The second (optional) argument is the path to the output directory.
    It's the current directory by default.
