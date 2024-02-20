@@ -123,6 +123,9 @@ After that the web player can figure out what format the client can play and sta
 ## Photo
 ```
 📁 ./
+├─ 🖼️️ image-xlg.avif
+├─ 🖼️️ image-xlg.webp
+├─ 🖼️️ image-xlg.jpeg
 ├─ 🖼️️ image-lg.avif
 ├─ 🖼️️ image-lg.webp
 ├─ 🖼️️ image-lg.jpeg
